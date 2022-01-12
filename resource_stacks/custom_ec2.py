@@ -72,7 +72,7 @@ class CustomEC2Stack(Stack):
         web_server_asg.connections.allow_from(alb, ec2.Port.tcp(80), description="Allows ASG Security Group to receive traffic from ALB")
 
         # Add AutoScaling Group Instances to ALB Target Group
-        listener.add_targets("listenerId", port=80, targets=[web_server_asg])
+        listener.add_targets("listenerId", port=80, targets=[web_server_asg], health_check=elbv2.HealthCheck(healthy_http_codes="200-499"))
 
         # Output of the ALB Domain Name
         output_alb_1 = CfnOutput(self, "albDomainName", value=f"http://{alb.load_balancer_dns_name}", description="Web Server ALB Domain Name")
