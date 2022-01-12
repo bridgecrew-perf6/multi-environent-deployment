@@ -25,6 +25,7 @@
         "account": "123456789012"
       },
       "prod": {
+        "stack-team-support-email": "bass.kiattisak@gmail.com",
         "region": "ap-southeast-1",
         "account": "131485244922",
         "encryption": true,
