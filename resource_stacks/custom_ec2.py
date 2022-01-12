@@ -31,23 +31,37 @@ class CustomEC2Stack(Stack):
             virtualization=ec2.AmazonLinuxVirt.HVM
         )
 
-        web_server = ec2.Instance(self, "webServerId", 
-                                  instance_type=ec2.InstanceType(instance_type_identifier="t2.nano"),
+        web_server = ec2.Instance(self, "webServerId",
+                                  instance_type=ec2.InstanceType(
+                                      instance_type_identifier="t2.nano"),
                                   instance_name="WebServer001",
                                   machine_image=amz_linux_ami,
-                                  vpc=vpc, 
-                                  vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+                                  vpc=vpc,
+                                  vpc_subnets=ec2.SubnetSelection(
+                                      subnet_type=ec2.SubnetType.PUBLIC),
                                   user_data=ec2.UserData.custom(user_data))
 
-        output_1 = CfnOutput(self, "webServer001Ip", description="WebServer Public Ip Address", value=f"http://{web_server.instance_public_ip}")
+        # Add EBS with provisioned IOPS Storage
+        web_server.instance.add_property_override("BlockDeviceMappings", [
+            {
+                "DeviceName": "/dev/sdb",
+                "Ebs": {"VolumeSize": 8, "VolumeType": "io1", "Iops": 400, "DeleteOnTermination": True}
+            }
+        ])
+
+        output_1 = CfnOutput(self, "webServer001Ip", description="WebServer Public Ip Address",
+                             value=f"http://{web_server.instance_public_ip}")
 
         # Allow Web Traffic
-        web_server.connections.allow_from_any_ipv4(ec2.Port.tcp(80), "Allow Web Traffic")
+        web_server.connections.allow_from_any_ipv4(
+            ec2.Port.tcp(80), "Allow Web Traffic")
 
         # Add permission to web server instance profile
         web_server.role.add_managed_policy(
-            iam.ManagedPolicy.from_aws_managed_policy_name("AmazonSSMManagedInstanceCore")
+            iam.ManagedPolicy.from_aws_managed_policy_name(
+                "AmazonSSMManagedInstanceCore")
         )
         web_server.role.add_managed_policy(
-            iam.ManagedPolicy.from_aws_managed_policy_name("AmazonS3ReadOnlyAccess")
+            iam.ManagedPolicy.from_aws_managed_policy_name(
+                "AmazonS3ReadOnlyAccess")
         )
