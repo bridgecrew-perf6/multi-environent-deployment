@@ -5,24 +5,15 @@ import aws_cdk as cdk
 
 from multi_environent_deployment.multi_environent_deployment_stack import MultiEnvironentDeploymentStack
 
-
 app = cdk.App()
-MultiEnvironentDeploymentStack(app, "MultiEnvironentDeploymentStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
 
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
+# dev_account = app.node.try_get_context('envs')['dev']
+# prod_account = app.node.try_get_context('envs')['prod']
 
-    #env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
+# env_AUS = cdk.Environment(region=dev_account['region'], account=dev_account['account'])
+# env_ASIA = cdk.Environment(region=prod_account['region'], account=prod_account['account'])
 
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-
-    #env=cdk.Environment(account='123456789012', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-    )
+# MultiEnvironentDeploymentStack(app, "myDevStack", is_prod=False, env=env_AUS)
+# MultiEnvironentDeploymentStack(app, "myProdStack", is_prod=True, env=env_ASIA)
 
 app.synth()

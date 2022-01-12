@@ -23,6 +23,21 @@
     "@aws-cdk/core:target-partitions": [
       "aws",
       "aws-cn"
-    ]
+    ],
+    "envs": {
+      "dev" : {
+        "region": "ap-southeast-2",
+        "account": "123456789012"
+      },
+      "prod" : {
+        "region": "ap-southeast-1",
+        "account": "131485244922",
+        "encryption": true,
+        "kms_arn": "arn:aws:kms:ap-southeast-1:131485244922:key/mrk-2710ff62800b427893cb14c0a1479f7f",
+        "vpc_cidr": "10.53.0.0/24",
+        "cidr_mask": 24,
+        "set_reserve": false
+      }
+    }
   }
 }
