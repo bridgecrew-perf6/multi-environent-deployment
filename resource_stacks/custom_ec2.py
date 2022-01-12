@@ -18,10 +18,23 @@ class CustomEC2Stack(Stack):
         with open("bootstrap_scripts/install_httpd.sh", mode="r") as file:
             user_data = file.read()
 
+        # Get the latest Windows AMI
+        windows_ami = ec2.MachineImage.latest_windows(
+            version=ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE
+        )
+
+        # Get the latest Linux AMI
+        amz_linux_ami = ec2.MachineImage.latest_amazon_linux(
+            generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
+            edition=ec2.AmazonLinuxEdition.STANDARD,
+            storage=ec2.AmazonLinuxStorage.EBS,
+            virtualization=ec2.AmazonLinuxVirt.HVM
+        )
+
         web_server = ec2.Instance(self, "webServerId", 
                                   instance_type=ec2.InstanceType(instance_type_identifier="t2.nano"),
-                                  instance_name="WebServer001", 
-                                  machine_image=ec2.MachineImage.generic_linux({"ap-southeast-1": "ami-0356b1cd4aa0ee970"}), 
+                                  instance_name="WebServer001",
+                                  machine_image=amz_linux_ami,
                                   vpc=vpc, 
                                   vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
                                   user_data=ec2.UserData.custom(user_data))
