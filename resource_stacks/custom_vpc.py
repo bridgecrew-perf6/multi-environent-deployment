@@ -15,7 +15,7 @@ class CustomVpcStack(Stack):
 
         prod_configs = self.node.try_get_context('envs')['prod']
 
-        custom_vpc = ec2.Vpc(
+        self.custom_vpc = ec2.Vpc(
             self, "customVpcId",
             cidr=prod_configs['vpc_configs']['vpc_cidr'],
             max_azs=2,
@@ -35,9 +35,9 @@ class CustomVpcStack(Stack):
                     subnet_type=ec2.SubnetType.PRIVATE_ISOLATED)
             ])
         
-        Tags.of(custom_vpc).add("Owner", "g025Vpc")
+        Tags.of(self.custom_vpc).add("Owner", "g025Vpc")
         
-        CfnOutput(self, "customVpcOutput", value=custom_vpc.vpc_id, export_name="customVpcId")
+        CfnOutput(self, "customVpcOutput", value=self.custom_vpc.vpc_id, export_name="customVpcId")
 
         my_bucket = s3.Bucket(self, "customBucketId-g025")
 
@@ -54,5 +54,8 @@ class CustomVpcStack(Stack):
 
         CfnOutput(self, "importedVpc2", value=vpc2.vpc_id, export_name="importedVpc2")
 
-        peer_vpc = ec2.CfnVPCPeeringConnection(self, "peerVpc", peer_vpc_id=custom_vpc.vpc_id, vpc_id=vpc2.vpc_id)
+        peer_vpc = ec2.CfnVPCPeeringConnection(self, "peerVpc", peer_vpc_id=self.custom_vpc.vpc_id, vpc_id=vpc2.vpc_id)
+
+        CfnOutput(self, "customVpcOutput",
+                  value=self.custom_vpc.vpc_id, export_name="VpcId")
 
