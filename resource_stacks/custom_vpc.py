@@ -11,7 +11,7 @@ class CustomVpcStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        prod_configs = self.node.try_get_context('env')['prod']
+        prod_configs = self.node.try_get_context('envs')['prod']
 
         custom_vpc = ec2.Vpc(
             self, "customVpcId",
@@ -26,7 +26,7 @@ class CustomVpcStack(Stack):
                 ec2.SubnetConfiguration(
                     name="privateSubnet", 
                     cidr_mask=prod_configs['vpc_configs']['cidr_mask'], 
-                    subnet_type=ec2.SubnetType.PRIVATE),
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT),
                 ec2.SubnetConfiguration(
                     name="dbSubnet", 
                     cidr_mask=prod_configs['vpc_configs']['cidr_mask'], 
