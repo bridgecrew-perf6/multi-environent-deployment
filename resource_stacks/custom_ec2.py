@@ -9,10 +9,8 @@ from constructs import Construct
 
 class CustomEC2Stack(Stack):
 
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, vpc, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-
-        vpc = ec2.Vpc.from_lookup(self, "vpc", vpc_id="vpc-0d6a06a7f9fedb6a7")
 
         # Read Bootstrap Script
         with open("bootstrap_scripts/install_httpd.sh", mode="r") as file:
