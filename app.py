@@ -7,6 +7,7 @@ from resource_stacks.custom_vpc import CustomVpcStack
 from resource_stacks.custom_ec2 import CustomEC2Stack
 from resource_stacks.custom_parameters_secret import CustomParametersSecretStack
 from resource_stacks.custom_iam import CustomIAMStack
+from resource_stacks.custom_s3_resource_policy import CustomS3ResourcePolicyStack
 
 app = cdk.App()
 
@@ -24,7 +25,10 @@ prod_env=cdk.Environment(region=prod_configs['region'], account=prod_configs['ac
 # # Custom SSM and Secrets
 # CustomParametersSecretStack(app, "my-custom-parameters-secret-stack")
 
-# Custom IAM
-CustomIAMStack(app, "my-custom-iam-stack")
+# # Custom IAM
+# CustomIAMStack(app, "my-custom-iam-stack")
+
+# Custom S3 Resource Policy
+CustomS3ResourcePolicyStack(app, "my-custom-s3-resource-policy-stack")
 
 app.synth()
