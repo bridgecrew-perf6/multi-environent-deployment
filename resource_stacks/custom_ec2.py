@@ -58,7 +58,7 @@ class CustomEC2Stack(Stack):
             self, 
             "webServerAsgId", 
             vpc=vpc, 
-            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT), 
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE_ISOLATED), 
             instance_type=ec2.InstanceType(instance_type_identifier="t2.micro"),
             role=web_server_role,
             machine_image=amz_linux_ami,
