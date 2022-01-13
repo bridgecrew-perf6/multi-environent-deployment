@@ -10,6 +10,7 @@ from resource_stacks.custom_iam import CustomIAMStack
 from resource_stacks.custom_s3_resource_policy import CustomS3ResourcePolicyStack
 from resource_stacks.custom_rds import CustomRDSStack
 from stacks_from_cfn.stack_from_existing_cfn_template import StackFromCloudFormationTemplate
+from resource_stacks.custom_sns import CustomSnsStack
 
 app = cdk.App()
 
@@ -41,6 +42,10 @@ app = cdk.App()
 #                     vpc=vpc.custom_vpc,
 #                     asg_security_groups=app_stack.web_server_asg.connections.security_groups, env=prod_env)
 
-StackFromCloudFormationTemplate(app, "my-stack-from-cloudformation-template")
+# # Import existing CloudFormation template
+# StackFromCloudFormationTemplate(app, "my-stack-from-cloudformation-template")
+
+# Custom SNS
+CustomSnsStack(app, "my-custom-sns-stack")
 
 app.synth()
