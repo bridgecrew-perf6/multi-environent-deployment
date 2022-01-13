@@ -11,6 +11,7 @@ from resource_stacks.custom_s3_resource_policy import CustomS3ResourcePolicyStac
 from resource_stacks.custom_rds import CustomRDSStack
 from stacks_from_cfn.stack_from_existing_cfn_template import StackFromCloudFormationTemplate
 from resource_stacks.custom_sns import CustomSnsStack
+from resource_stacks.custom_sqs import CustomSqsStack
 
 app = cdk.App()
 
@@ -45,7 +46,10 @@ app = cdk.App()
 # # Import existing CloudFormation template
 # StackFromCloudFormationTemplate(app, "my-stack-from-cloudformation-template")
 
-# Custom SNS
-CustomSnsStack(app, "my-custom-sns-stack")
+# # Custom SNS
+# CustomSnsStack(app, "my-custom-sns-stack")
+
+# Custom SQS
+CustomSqsStack(app, "my-custom-sqs-stack")
 
 app.synth()
