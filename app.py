@@ -13,6 +13,7 @@ from stacks_from_cfn.stack_from_existing_cfn_template import StackFromCloudForma
 from resource_stacks.custom_sns import CustomSnsStack
 from resource_stacks.custom_sqs import CustomSqsStack
 from serverless_stacks.custom_lambda import CustomLambdaStack
+from serverless_stacks.custom_lambda_from_s3 import CustomLambdaFromS3Stack
 
 app = cdk.App()
 
@@ -53,7 +54,10 @@ app = cdk.App()
 # # Custom SQS
 # CustomSqsStack(app, "my-custom-sqs-stack")
 
-# Custom Lambda
-CustomLambdaStack(app, "my-custom-lambda-stack")
+# # Custom Lambda
+# CustomLambdaStack(app, "my-custom-lambda-stack")
+
+# Custom Lambda from S3
+CustomLambdaFromS3Stack(app, "my-custom-lambda-from-s3-stack")
 
 app.synth()
