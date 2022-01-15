@@ -23,6 +23,7 @@ from monitoring_stacks.custom_cloudwatch_metrics import CustomCloudWatchMetricsS
 from monitoring_stacks.custom_cloudwatch_dashboards_widgets import CustomCloudWatchDashboardsWidgetsStack
 from use_cases.deploy_static_website_on_s3 import DeployStaticSiteStack
 from use_cases.deploy_cloudfront_oai_static_site import DeployCloudFrontOAIStaticSiteStack
+from use_cases.serverless_event_processor_architecture import ServerlessEventProcessorArchitectureStack
 
 app = cdk.App()
 
@@ -93,7 +94,10 @@ app = cdk.App()
 # # Deploy Static Site on S3
 # DeployStaticSiteStack(app, "deploy-static-site-stack")
 
-# Deploy CloudFront OAI(Origin Access Identity) Static Site
-DeployCloudFrontOAIStaticSiteStack(app, "deploy-cloudfront-oai-static-site-stack")
+# # Deploy CloudFront OAI(Origin Access Identity) Static Site
+# DeployCloudFrontOAIStaticSiteStack(app, "deploy-cloudfront-oai-static-site-stack")
+
+# Serverless Event Processor Architecture wit S3 Event
+ServerlessEventProcessorArchitectureStack(app, "serverless-event-processor-architecture-stack")
 
 app.synth()
