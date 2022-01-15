@@ -17,6 +17,7 @@ from serverless_stacks.custom_lambda_from_s3 import CustomLambdaFromS3Stack
 from serverless_stacks.custom_lambda_as_cron import CustomLambdaAsCronStack
 from serverless_stacks.custom_dynamodb import CustomDynamoDBStack
 from serverless_stacks.custom_lambda_s3_inventory_generator import CustomLambdaS3InventoryGeneratorStack
+from serverless_stacks.custom_apigw_lambda import CustomAPIGatewayLambdaStack
 
 app = cdk.App()
 
@@ -69,7 +70,10 @@ app = cdk.App()
 # # Custom DynamoDB
 # CustomDynamoDBStack(app, "my-custom-dynamodb-stack")
 
-# Custom Lambda S3 Inventory Generator
-CustomLambdaS3InventoryGeneratorStack(app, "my-custom-lambda-s3-inventory-generator-stack")
+# # Custom Lambda S3 Inventory Generator
+# CustomLambdaS3InventoryGeneratorStack(app, "my-custom-lambda-s3-inventory-generator-stack")
+
+# Custom API Gateway + Lambda
+CustomAPIGatewayLambdaStack(app, "my-custom-api-gateway-lambda-stack")
 
 app.synth()

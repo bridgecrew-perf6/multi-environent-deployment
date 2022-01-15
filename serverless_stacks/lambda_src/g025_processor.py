@@ -6,7 +6,7 @@ import os
 def lambda_handler(event, context):
     global LOGGER
     LOGGER = logging.getLogger()
-    LOGGER.setLevel(level=os.getenv('LOG_LEVEL', 'DEBUG').upper())
+    LOGGER.setLevel(level=os.getenv('LOG_LEVEL'))
 
     LOGGER.info(f"received_event:{event}")
 
