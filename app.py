@@ -29,6 +29,7 @@ from use_cases.serverless_data_stream_processor_with_kinesis import ServerlessSt
 from use_cases.serverless_dynamodb_event_processor_with_dynamodb_stream import ServerlessDynamoDBEventProcessorWithDynamoDBStreamStack
 from use_cases.modern_application_with_containers import ContainerizedMicroserviceWithECSStack
 from use_cases.serverless_containers_with_fargate import ServerlessContainersWithFargateStack
+from use_cases.serverless_batch_processor_with_fargate import ServerlessBatchProcessorWithFargateStack
 
 app = cdk.App()
 
@@ -117,7 +118,10 @@ app = cdk.App()
 # # Containerized Microservice with ECS
 # ContainerizedMicroserviceWithECSStack(app, "containerized-microservice-with-ecs-stack")
 
-# Serverless Containers With FargateStack
-ServerlessContainersWithFargateStack(app, "serverless-containers-with-fargate-stack")
+# # Serverless Containers With Fargate
+# ServerlessContainersWithFargateStack(app, "serverless-containers-with-fargate-stack")
+
+# Serverless Batch Processor With Fargate
+ServerlessBatchProcessorWithFargateStack(app, "serverless-batch-processor-with-fargate-stack")
 
 app.synth()
