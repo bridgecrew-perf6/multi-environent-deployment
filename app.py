@@ -14,6 +14,8 @@ from resource_stacks.custom_sns import CustomSnsStack
 from resource_stacks.custom_sqs import CustomSqsStack
 from serverless_stacks.custom_lambda import CustomLambdaStack
 from serverless_stacks.custom_lambda_from_s3 import CustomLambdaFromS3Stack
+from serverless_stacks.custom_lambda_as_cron import CustomLambdaAsCronStack
+from serverless_stacks.custom_dynamodb import CustomDynamoDBStack
 
 app = cdk.App()
 
@@ -57,7 +59,13 @@ app = cdk.App()
 # # Custom Lambda
 # CustomLambdaStack(app, "my-custom-lambda-stack")
 
-# Custom Lambda from S3
-CustomLambdaFromS3Stack(app, "my-custom-lambda-from-s3-stack")
+# # Custom Lambda from S3
+# CustomLambdaFromS3Stack(app, "my-custom-lambda-from-s3-stack")
+
+# # Custom Lambda as Cron
+# CustomLambdaAsCronStack(app, "my-custom-lambda-as-cron-stack")
+
+# Custom DynamoDB
+CustomDynamoDBStack(app, "my-custom-dynamodb-stack")
 
 app.synth()
