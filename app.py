@@ -19,6 +19,7 @@ from serverless_stacks.custom_dynamodb import CustomDynamoDBStack
 from serverless_stacks.custom_lambda_s3_inventory_generator import CustomLambdaS3InventoryGeneratorStack
 from serverless_stacks.custom_apigw_lambda import CustomAPIGatewayLambdaStack
 from monitoring_stacks.custom_ec2_with_alarms import CustomEc2WithAlarmsStack
+from monitoring_stacks.custom_cloudwatch_metrics import CustomCloudWatchMetricsStack
 
 app = cdk.App()
 
@@ -77,7 +78,10 @@ cdk.Tags.of(app).add("stack-level-tagging", "sample_tag_value")
 # # Custom API Gateway + Lambda
 # CustomAPIGatewayLambdaStack(app, "my-custom-api-gateway-lambda-stack")
 
-# Custom EC2 with Alarms
-CustomEc2WithAlarmsStack(app, "my-custom-ec2-with-alarms-stack", vpc=vpc.custom_vpc, env=prod_env)
+# # Custom EC2 with Alarms
+# CustomEc2WithAlarmsStack(app, "my-custom-ec2-with-alarms-stack", vpc=vpc.custom_vpc, env=prod_env)
+
+# Custom CloudWatch Metrics
+CustomCloudWatchMetricsStack(app, "my-custom-cloudwatch-metrics-stack")
 
 app.synth()
