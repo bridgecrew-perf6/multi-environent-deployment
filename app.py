@@ -12,6 +12,7 @@ from resource_stacks.custom_rds import CustomRDSStack
 from stacks_from_cfn.stack_from_existing_cfn_template import StackFromCloudFormationTemplate
 from resource_stacks.custom_sns import CustomSnsStack
 from resource_stacks.custom_sqs import CustomSqsStack
+from serverless_stacks.custom_lambda import CustomLambdaStack
 
 app = cdk.App()
 
@@ -49,7 +50,10 @@ app = cdk.App()
 # # Custom SNS
 # CustomSnsStack(app, "my-custom-sns-stack")
 
-# Custom SQS
-CustomSqsStack(app, "my-custom-sqs-stack")
+# # Custom SQS
+# CustomSqsStack(app, "my-custom-sqs-stack")
+
+# Custom Lambda
+CustomLambdaStack(app, "my-custom-lambda-stack")
 
 app.synth()
