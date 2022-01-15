@@ -28,6 +28,7 @@ from use_cases.serverless_rest_api_architecture import ServerlessRESTAPIArchitec
 from use_cases.serverless_data_stream_processor_with_kinesis import ServerlessStreamProcessorArchitectureWithKinesisStack
 from use_cases.serverless_dynamodb_event_processor_with_dynamodb_stream import ServerlessDynamoDBEventProcessorWithDynamoDBStreamStack
 from use_cases.modern_application_with_containers import ContainerizedMicroserviceWithECSStack
+from use_cases.serverless_containers_with_fargate import ServerlessContainersWithFargateStack
 
 app = cdk.App()
 
@@ -113,7 +114,10 @@ app = cdk.App()
 # # Serverless DynamoDB Event Processor Architecture with DynamoDB Stream
 # ServerlessDynamoDBEventProcessorWithDynamoDBStreamStack(app, "serverless-dynamodb-event-processor-architecture-with-dynamodb-stream-stack")
 
-# Cotainerized Microservice with ECS
-ContainerizedMicroserviceWithECSStack(app, "containerized-microservice-with-ecs-stack")
+# # Containerized Microservice with ECS
+# ContainerizedMicroserviceWithECSStack(app, "containerized-microservice-with-ecs-stack")
+
+# Serverless Containers With FargateStack
+ServerlessContainersWithFargateStack(app, "serverless-containers-with-fargate-stack")
 
 app.synth()
