@@ -20,18 +20,19 @@ from serverless_stacks.custom_lambda_s3_inventory_generator import CustomLambdaS
 from serverless_stacks.custom_apigw_lambda import CustomAPIGatewayLambdaStack
 from monitoring_stacks.custom_ec2_with_alarms import CustomEc2WithAlarmsStack
 from monitoring_stacks.custom_cloudwatch_metrics import CustomCloudWatchMetricsStack
+from monitoring_stacks.custom_cloudwatch_dashboards_widgets import CustomCloudWatchDashboardsWidgetsStack
 
 app = cdk.App()
 
-prod_configs = app.node.try_get_context('envs')['prod']
-prod_env = cdk.Environment(
-    region=prod_configs['region'], account=prod_configs['account'])
+# prod_configs = app.node.try_get_context('envs')['prod']
+# prod_env = cdk.Environment(
+#     region=prod_configs['region'], account=prod_configs['account'])
 
-# Custom VPC Stack
-vpc = CustomVpcStack(app, "my-custom-vpc-stack", env=prod_env)
-cdk.Tags.of(app).add("stack-team-support-email",
-                     prod_configs['stack-team-support-email'])
-cdk.Tags.of(app).add("stack-level-tagging", "sample_tag_value")
+# # Custom VPC Stack
+# vpc = CustomVpcStack(app, "my-custom-vpc-stack", env=prod_env)
+# cdk.Tags.of(app).add("stack-team-support-email",
+#                      prod_configs['stack-team-support-email'])
+# cdk.Tags.of(app).add("stack-level-tagging", "sample_tag_value")
 
 # # Custom EC2 Stack
 # app_stack = CustomEC2Stack(app, "my-custom-ec2-stack",
@@ -81,7 +82,10 @@ cdk.Tags.of(app).add("stack-level-tagging", "sample_tag_value")
 # # Custom EC2 with Alarms
 # CustomEc2WithAlarmsStack(app, "my-custom-ec2-with-alarms-stack", vpc=vpc.custom_vpc, env=prod_env)
 
-# Custom CloudWatch Metrics
-CustomCloudWatchMetricsStack(app, "my-custom-cloudwatch-metrics-stack")
+# # Custom CloudWatch Metrics
+# CustomCloudWatchMetricsStack(app, "my-custom-cloudwatch-metrics-stack")
+
+# Custom CloudWatch Dashboards Widgets
+CustomCloudWatchDashboardsWidgetsStack(app, "my-custom-cloudwatch-dashboards-widgets-stack")
 
 app.synth()
