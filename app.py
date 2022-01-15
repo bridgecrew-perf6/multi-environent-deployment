@@ -21,6 +21,7 @@ from serverless_stacks.custom_apigw_lambda import CustomAPIGatewayLambdaStack
 from monitoring_stacks.custom_ec2_with_alarms import CustomEc2WithAlarmsStack
 from monitoring_stacks.custom_cloudwatch_metrics import CustomCloudWatchMetricsStack
 from monitoring_stacks.custom_cloudwatch_dashboards_widgets import CustomCloudWatchDashboardsWidgetsStack
+from use_cases.deploy_static_website_on_s3 import DeployStaticSiteStack
 
 app = cdk.App()
 
@@ -85,7 +86,10 @@ app = cdk.App()
 # # Custom CloudWatch Metrics
 # CustomCloudWatchMetricsStack(app, "my-custom-cloudwatch-metrics-stack")
 
-# Custom CloudWatch Dashboards Widgets
-CustomCloudWatchDashboardsWidgetsStack(app, "my-custom-cloudwatch-dashboards-widgets-stack")
+# # Custom CloudWatch Dashboards Widgets
+# CustomCloudWatchDashboardsWidgetsStack(app, "my-custom-cloudwatch-dashboards-widgets-stack")
+
+# Deploy Static Site on S3
+DeployStaticSiteStack(app, "deploy-static-site-stack")
 
 app.synth()
