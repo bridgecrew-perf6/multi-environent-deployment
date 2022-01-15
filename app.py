@@ -65,7 +65,7 @@ app = cdk.App()
 # # Custom Lambda as Cron
 # CustomLambdaAsCronStack(app, "my-custom-lambda-as-cron-stack")
 
-# Custom DynamoDB
-CustomDynamoDBStack(app, "my-custom-dynamodb-stack")
+# # Custom DynamoDB
+# CustomDynamoDBStack(app, "my-custom-dynamodb-stack")
 
 app.synth()
