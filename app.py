@@ -26,6 +26,7 @@ from use_cases.deploy_cloudfront_oai_static_site import DeployCloudFrontOAIStati
 from use_cases.serverless_event_processor_architecture import ServerlessEventProcessorArchitectureStack
 from use_cases.serverless_rest_api_architecture import ServerlessRESTAPIArchitectureStack
 from use_cases.serverless_data_stream_processor_with_kinesis import ServerlessStreamProcessorArchitectureWithKinesisStack
+from use_cases.serverless_dynamodb_event_processor_with_dynamodb_stream import ServerlessDynamoDBEventProcessorWithDynamoDBStreamStack
 
 app = cdk.App()
 
@@ -105,7 +106,10 @@ app = cdk.App()
 # # Serverless REST API Architecture
 # ServerlessRESTAPIArchitectureStack(app, "serverless-rest-api-architecture-stack")
 
-# Serverless Stream Processor Architecture with Kinesis
-ServerlessStreamProcessorArchitectureWithKinesisStack(app, "serverless-stream-processor-architecture-with-kinesis-stack")
+# # Serverless Stream Processor Architecture with Kinesis
+# ServerlessStreamProcessorArchitectureWithKinesisStack(app, "serverless-stream-processor-architecture-with-kinesis-stack")
+
+# Serverless DynamoDB Event Processor Architecture with DynamoDB Stream
+ServerlessDynamoDBEventProcessorWithDynamoDBStreamStack(app, "serverless-dynamodb-event-processor-architecture-with-dynamodb-stream-stack")
 
 app.synth()
